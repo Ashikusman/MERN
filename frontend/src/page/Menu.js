@@ -73,7 +73,7 @@ const Menu = () => {
         </div>
       </div>
       <div
-        className=" mt-3 flex gap-5 justify-center overflow-scroll scrollbar-none scroll-smooth transition-all cursor-pointer"
+        className=" mt-3 flex gap-5  overflow-scroll scrollbar-none scroll-smooth transition-all cursor-pointer"
         ref={slideProductRef}>
         {categoryList[0] ? categoryList.map((el) => {
           return (
