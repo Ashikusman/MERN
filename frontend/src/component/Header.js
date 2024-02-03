@@ -74,7 +74,14 @@ const Header = () => {
               )}
             </div>
             {showMenu && (
-              <div className="absolute right-2 bg-white py-2 px-2 shadow drop-shadow-md flex flex-col min-w-[120px] text-center">
+              <div className="absolute right-2 bg-white py-2 px-2 shadow drop-shadow-md flex flex-col min-w-[120px] ">
+                 <nav className=" text-base md:text-md flex flex-col md:hidden ">
+                  <Link to={""}>Home</Link>
+                  <Link to={"menu"}>Menu</Link>
+                  {/* <Link to={"productdisplay/6582fc9c2fe8786557af4d1c"}>Product</Link> */}
+                  <Link to={"about"}>About</Link>
+                  <Link to={"contact"}>Contact</Link>
+                </nav>
                 {/* New product tab will be visible for admin only */}
                 {userData.email === process.env.REACT_APP_ADMIN_EMAIL && (
                   <Link
@@ -100,13 +107,7 @@ const Header = () => {
                     Login
                   </Link>
                 )}
-                <nav className=" text-base md:text-md flex flex-col md:hidden ">
-                  <Link to={""}>Home</Link>
-                  <Link to={"menu"}>Menu</Link>
-                  {/* <Link to={"productdisplay/6582fc9c2fe8786557af4d1c"}>Product</Link> */}
-                  <Link to={"about"}>About</Link>
-                  <Link to={"contact"}>Contact</Link>
-                </nav>
+               
               </div>
             )}
           </div>
