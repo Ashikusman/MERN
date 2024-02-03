@@ -15,12 +15,12 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 
 //middleware
-const corsOptions = {
-  origin: "https://mern-frontend-restaurant.onrender.com"
-}
+// const corsOptions = {
+//   origin: "https://mern-frontend-restaurant.onrender.com"
+// }
 
 const app = express();
-app.use(cors(corsOptions));
+app.use(cors());
 //Gives error "undefined" because when data is coming from an Api it should be converted to JSON format
 //Gives error "request entity too large" when limit is not set
 app.use(express.json({ limit: "10mb" })); //2.14.44
