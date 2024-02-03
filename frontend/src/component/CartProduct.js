@@ -14,7 +14,7 @@ export const CartProduct = ({ id, name, image, price, qty, total }) => {
       <div className="bg-white shadow-md p-2 flex gap-3 rounded border border-gray">
         <div>
           {/* 8.21.58 */}
-          <img src={image} className="max-w-[200px] min-h-[150px] " alt="" />
+          <img src={image} className="max-w-[150px] min-h-[150px] " alt="" />
         </div>
         <div className="flex flex-col  w-full">
           <div className="flex justify-between">
