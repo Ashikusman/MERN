@@ -16,7 +16,7 @@ const dotenv = require("dotenv").config();
 
 //middleware
 const corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "https://mern-frontend-restaurant.onrender.com"
 }
 
 const app = express();
