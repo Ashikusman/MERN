@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../Assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,9 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const userData = useSelector((state) => state.user);
   // console.log(userData);
+
+  const navigate = useNavigate()
+
   const dispatch = useDispatch();
   //Create another function in userSlice
 
@@ -21,6 +24,7 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logoutRedux());
     toast("Logged out successfully");
+    navigate("/login")
   };
 
   //To check whether admin email is shown in console
