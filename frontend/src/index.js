@@ -17,6 +17,7 @@ import ProductDisplay from './page/ProductDisplay';
 import { Cart } from './page/Cart';
 import {Reservation} from './page/Reservation';
 import { Checkout } from './page/Checkout';
+import { Success } from './page/Success';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
       <Route path="contact" element={<Contact/>}/>
       <Route path="cart" element={<Cart/>}/>
       <Route path="checkout" element={<Checkout/>}/>
+      <Route path="success" element={<Success/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="newproduct" element={<Newproduct/>}/>
       <Route path="signup" element={<Signup/>}/>
