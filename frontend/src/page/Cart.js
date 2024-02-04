@@ -97,7 +97,7 @@ export const Cart = () => {
               <p>Total</p>
               <p className="ml-auto font-bold">Rs: {subTotal + 500}</p>
             </div>
-            <Link to={"/checkout"}>
+            <Link to={"/success"}>
               <button className="bg-black w-full text-white text-lg p-2" onClick={handleCheckout}>Checkout</button>
             </Link>
             <Link to ={"/menu"}>
