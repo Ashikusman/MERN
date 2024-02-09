@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    date: "",
-    endTime: "",
-    month: "",
-    noOfPerson: "",
-    selectTable: "",
-    startTime: "",
-    year: "",
+    // date: "",
+    // endTime: "",
+    // month: "",
+    // noOfPerson: "",
+    // selectTable: "",
+    // startTime: "",
+    // year: "",
+   reservationList: []
 };
 
 export const reservationSlice = createSlice({
@@ -15,15 +16,16 @@ export const reservationSlice = createSlice({
     initialState,
     reducers : {
         setDatareservation : (state, action) => {
-            console.log(action.payload.data)
+            // console.log(action.payload.data)
 
-            state.noOfPerson = action.payload.data.noOfPerson
-            state.date = action.payload.data.date
-            state.month = action.payload.data.month
-            state.year = action.payload.data.year
-            state.startTime = action.payload.data.startTime
-            state.endTime = action.payload.data.endTime
-            state.selectTable = action.payload.data.selectTable
+            // state.noOfPerson = action.payload.data.noOfPerson
+            // state.date = action.payload.data.date
+            // state.month = action.payload.data.month
+            // state.year = action.payload.data.year
+            // state.startTime = action.payload.data.startTime
+            // state.endTime = action.payload.data.endTime
+            // state.selectTable = action.payload.data.selectTable
+            state.reservationList = [...action.payload];
         }
     }
 
