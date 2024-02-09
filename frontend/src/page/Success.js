@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Receipt } from "../component/Receipt";
+import { ReservationDetails } from "../component/ReservationDetails";
 
 export const Success = () => {
   const productCartItem = useSelector((state) => state.product.cartItem);
@@ -9,8 +10,10 @@ export const Success = () => {
   const userData = useSelector((state) => state.user);
   console.log(userData)
 
-  const reservationData = useSelector((state) => state.reservation);
+  const reservationData = useSelector((state) => state.reservation.reservationList);
   console.log(reservationData)
+
+  
 
   //acc-accumulator, curr-current
   //use parseInt because curr.total will be in string format
@@ -81,6 +84,23 @@ export const Success = () => {
             <p>Email</p>
             <p className="ml-auto font-bold">{userData.email}</p>
           </div>
+          {reservationData.map((el)=>{
+            return(
+              <ReservationDetails
+                key={el._id}
+                id={el._id}
+                noOfPerson={el.noOfPerson}
+                date={el.date}
+                month={el.month}
+                year={el.year}
+                startTime={el.startTime}
+                endTime={el.endTime}
+                selectTable={el.selectTable}
+
+              />
+            )
+          })}
+
           {/* <div className="w-full flex p-2 text-lg border border-white">
             <p>Person count</p>
             <p className="ml-auto font-bold">{reservationData.noOfPerson}</p>
