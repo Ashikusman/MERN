@@ -175,6 +175,16 @@ app.post("/reservation", async (req, res) => {
 
 });
 
+//Api to fetch last reservation 5.16.20
+app.get("/reservation", async (req, res) => {
+  //const data = await reservationModel.find({});
+  const data = await reservationModel.find({}).sort({_id:-1}).limit(1);
+  //const data = await reservationModel.findOne({}).sort({_id:-1}); Uncaught (in promise) TypeError: action.payload is not iterable
+  //res.send(data)
+  res.send(JSON.stringify(data));
+  //create useEffect in App.js
+});
+
 //Checkout
 app.post("/checkout", async (req, res) => {
   // console.log(req.body)
