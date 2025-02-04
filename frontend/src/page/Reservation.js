@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 export const Reservation = () => {
   //After login it should direct to reservation page
   const navigate = useNavigate();
+
+  // const reservationData = useSelector((state) => state.reservation.reservationList)
+  // console.log(reservationData);
 
   const [showTable, setShowTable] = useState(false);
   const [data, setData] = useState({
@@ -22,7 +26,6 @@ export const Reservation = () => {
   const handleShowTable = () => {
     //preve means previous value
     setShowTable((preve) => !preve);
-    // 1.8.260
   };
 
   //function to store data
@@ -65,10 +68,8 @@ export const Reservation = () => {
 
       toast(fetchRes.message)
       if(fetchRes.alert){
-        navigate("/menu") //directing to menu page
-
-      }
-      
+        navigate("/menu"); //directing to menu page       
+      }      
     }
     else {
       //alert("Please fill in the required fields")
@@ -164,6 +165,7 @@ export const Reservation = () => {
             <option>Year</option>
             <option>2023</option>
             <option>2024</option>
+            <option>2025</option>
           </select>
           <br />
           <br />
@@ -248,11 +250,11 @@ export const Reservation = () => {
                 onChange={handleOnChange}
               >
                 <option>Select table </option>
-                <option id="table1" >Table 1(1 person) </option>
-                <option id="table2" >Table 2(2 persons) </option>
-                <option id="table3" >Table 3(4 persons) </option>
-                <option id="table4" >Table 4(6 persons) </option>
-                <option id="table5" >Table 5(8 persons) </option>
+                <option id="table1" >Table (1 person) </option>
+                <option id="table2" >Table (2 persons) </option>
+                <option id="table3" >Table (4 persons) </option>
+                <option id="table4" >Table (6 persons) </option>
+                <option id="table5" >Table (8 persons) </option>
               </select>
               <br />
             </>
