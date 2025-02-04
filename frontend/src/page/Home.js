@@ -18,7 +18,6 @@ const Home = () => {
               Welcome!!!
             </h2>
             <div className=" md:w-1/2 m-auto flex items-center justify-center">
-              {/*5.51.05  */}
               <Link to={`/signup`}>
                 <button className=" bg-blue-500 font-bold text-white hover:bg-blue-600 cursor-pointer px-8 py-2 rounded-md mt-8 ">
                   Sign Up Now
