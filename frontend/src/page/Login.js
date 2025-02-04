@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SignupImage from "../Assets/user.png";
 import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +17,15 @@ const Login = () => {
   //Import useNavigate above
   const navigate = useNavigate()
   // console.log(data)
+  const location = useLocation();
+  const [reservationData,setReservationData] = useState(null);
+
+  useEffect(() => {
+    if(location.state && location.state.reservationData) {
+      setReservationData(location.state.reservationData)
+
+    }
+  }, [location])
 
   //useSelector comes from the react-redux
   const userData = useSelector((state) => state.user)
@@ -26,11 +35,12 @@ const Login = () => {
   const dispatch = useDispatch()
   //call it in when login is successful
 
+
+
   //function to hide and show password
   const handleShowPassword = () => {
     //preve means previous value
     setShowPassword((preve) => !preve);
-    // 1.8.260
   };
 
   //function to store data 
@@ -64,12 +74,14 @@ const Login = () => {
         const dataRes = await fetchData.json()
         // console.log(dataRes)
         //Import toast above
-        toast(dataRes.message) //3.1.30
+        toast(dataRes.message)
 
         if(dataRes.alert) {
           dispatch(loginRedux(dataRes))
           navigate("/reservation") //direct to reservation
-                   
+          if(dataRes.data.email === process.env.REACT_APP_ADMIN_EMAIL) {
+            navigate("/newproduct");
+          }       
         }
         
         // console.log(userData)
