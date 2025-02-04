@@ -9,7 +9,7 @@ const ProductDisplay = () => {
 
   //Display product by Id
   const { filterby } = useParams();
-  //console.log(params.filterby) //7.8.44
+  //console.log(params.filterby) 
 
   const productData = useSelector((state) => state.product.productList);
   //console.log(productData);
@@ -34,7 +34,6 @@ const ProductDisplay = () => {
       <br/>
       <div className="md:flex m-auto max-w-4xl items-center justify-center gap-5 bg-white  ">    
         <div className="max-w-md p-5">
-        {/* 7.31.09 */}
           <img src={productDisplay.image} classname="" alt="" />
         </div>
         <div className="flex flex-col px-5">
