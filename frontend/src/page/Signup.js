@@ -28,7 +28,7 @@ const Signup = () => {
   const handleShowPassword = () => {
     //preve means previous value
     setShowPassword((preve) => !preve);
-    // 1.8.260
+    
   };
 
   //function to hide and show confirm password
@@ -85,7 +85,7 @@ const Signup = () => {
             // console.log(dataRes)
 
 
-            //alert(dataRes.message) //2.42.19
+            //alert(dataRes.message) 
             //Import toast above
             toast(dataRes.message)
             if(dataRes.alert) {
@@ -112,7 +112,6 @@ const Signup = () => {
             {/* picture upload */}
             <label htmlFor="profileImage">
               <div className="absolute bottom-0 h-1/3 bg-blue-500 bg-opacity-50 w-full text-center cursor-pointer">
-                {/* 1.40.40 */}
                 <p className="text-sm text-white">Upload</p>
               </div>
               <input type={"file"} id="profileImage" accept="image/*" className="hidden" onChange={handleUploadProfileImage}/>
@@ -138,7 +137,6 @@ const Signup = () => {
               value={data.lastName}
               onChange={handleOnChange}
             />
-            {/* 58.20 */}
             <label htmlFor="email">Email</label>
             <input
               type={"email"}
