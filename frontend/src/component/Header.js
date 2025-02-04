@@ -31,7 +31,7 @@ const Header = () => {
   //If it is "undefined" restart app
   //console.log(process.env.REACT_APP_ADMIN_EMAIL)
 
-  //8.09.26
+
   const cartItemNumber = useSelector((state)=>state.product.cartItem)
   return (
     <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
@@ -49,13 +49,12 @@ const Header = () => {
             {/* <Link to={"reservation"}>Reservation</Link> */}
             <Link to={"menu"}>Menu</Link>
             {/* <Link to={"productdisplay/6582fc9c2fe8786557af4d1c"}>Product</Link> */}
-            <Link to={"about"}>About</Link>
-            <Link to={"contact"}>Contact</Link>
+            {/* <Link to={"about"}>About</Link> */}
+            <Link to={"#contact"}>Contact</Link>
           </nav>
           <div className="text-2xl relative">
             <Link to={"cart"}>
               <FaShoppingCart />
-              {/*30.07 */}
               <div className="absolute -top-3 -right-3 text-white bg-red-500 h-5 w-4 rounded-full p-0 text-sm text-center">
                 {cartItemNumber.length}
               </div>
@@ -79,17 +78,26 @@ const Header = () => {
                   <Link to={""}>Home</Link>
                   <Link to={"menu"}>Menu</Link>
                   {/* <Link to={"productdisplay/6582fc9c2fe8786557af4d1c"}>Product</Link> */}
-                  <Link to={"about"}>About</Link>
+                  {/* <Link to={"about"}>About</Link> */}
                   <Link to={"contact"}>Contact</Link>
                 </nav>
                 {/* New product tab will be visible for admin only */}
                 {userData.email === process.env.REACT_APP_ADMIN_EMAIL && (
+                  <>
                   <Link
                     to={"newproduct"}
                     className="whitespace-nowrap cursor-pointer"
                   >
                     New product
                   </Link>
+                  <Link to={"products"} className="whitespace-nowrap cursor-pointer">
+                    Products
+                  </Link>
+                  <Link to={"orders"} className="whitespace-nowrap cursor-pointer">
+                    Orders
+                  </Link>
+                  
+                  </>
                 )}
                 {/* If logout tab when user image is shown */}
                 {userData.firstName ? (
