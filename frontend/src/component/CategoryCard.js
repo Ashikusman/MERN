@@ -9,8 +9,7 @@ import React from 'react'
 
 export const CategoryCard = ({category,onClick,}) => {
   return (
-    <div onClick={onClick}>
-      {/* 7.05.13 */}        
+    <div onClick={onClick}>      
         <div className="bg-blue-500 text-white hover:bg-blue-800 p-8 cursor pointer rounded ">
           <p className="text-center text-xl font-bold">{category}</p> 
         </div>
