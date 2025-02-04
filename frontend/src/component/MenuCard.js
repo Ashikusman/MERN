@@ -30,10 +30,8 @@ export const MenuCard = ({ name, image, price, category, loading, id }) => {
             <p className="text-center font-bold">
               Rs: <span className="text-red-600">{price}</span>
             </p>
-            {/* 5.54.13 */}
             <div className="md:1/2 flex flex-wrap bg-blue-500 hover:bg-blue-600 text-white font-bold cursor-pointer items-center justify-center rounded h-8">
               <button className="">View Product</button>
-              {/* 6.23.32 */}
             </div>
           </Link>
         </>
