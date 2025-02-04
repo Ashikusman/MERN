@@ -9,15 +9,15 @@ const initialState = {
     // startTime: "",
     // year: "",
    reservationList: []
+   //reservationList: JSON.parse(localStorage.getItem('reservationLists')) || [], // Load from localStorage if available
+   
 };
 
 export const reservationSlice = createSlice({
     name : "reservation",
     initialState,
     reducers : {
-        setDatareservation : (state, action) => {
-            // console.log(action.payload.data)
-
+        setDatareservation : (state, action) => {    
             // state.noOfPerson = action.payload.data.noOfPerson
             // state.date = action.payload.data.date
             // state.month = action.payload.data.month
@@ -26,6 +26,8 @@ export const reservationSlice = createSlice({
             // state.endTime = action.payload.data.endTime
             // state.selectTable = action.payload.data.selectTable
             state.reservationList = [...action.payload];
+            //localStorage.setItem('reservationLists', JSON.stringify(state.reservationList)); // Persist to localStorage
+            //console.log(action);
         }
     }
 
