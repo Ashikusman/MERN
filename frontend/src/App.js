@@ -7,12 +7,15 @@ import { useEffect } from 'react';
 import { setDataProduct } from './redux/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDatareservation } from './redux/reservationSlice';
+import { setDataUser } from './redux/userSlice';
+
 
 
 function App() {
   const dispatch = useDispatch()
   const productData = useSelector((state)=> state.product)
   const reservationData = useSelector((state)=> state.reservation)
+  const usersData = useSelector((state)=> state.user)
 
   useEffect(()=>{
     (async()=>{
@@ -29,13 +32,33 @@ function App() {
     (async()=>{
       const res = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/reservation`)
       const resData = await res.json()
-      console.log(resData)
+      //console.log(resData)
       dispatch(setDatareservation(resData))
     })()
   },[])
 
   // console.log(reservationData)
+
+  useEffect(()=>{
+    (async()=>{
+      const res = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/signup`)
+      const resData = await res.json()
+      //console.log(resData)
+      dispatch(setDataUser(resData))
+    })()
+  },[])
+
+  // console.log(usersData)
   
+  // useEffect(()=>{
+  //   (async()=>{
+  //     const res = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/editproduct`)
+  //     const resData = await res.json()
+  //     console.log(resData)
+  //     dispatch(setDataProduct(resData))
+  //   })()
+  // },[])
+
   return (
     <>
       <Toaster />
