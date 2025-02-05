@@ -16,8 +16,13 @@ import { Provider } from 'react-redux';
 import ProductDisplay from './page/ProductDisplay';
 import { Cart } from './page/Cart';
 import {Reservation} from './page/Reservation';
-import { Checkout } from './page/Checkout';
-import { Success } from './page/Success';
+import { Products } from './page/Products';
+import { Orders } from './page/Orders';
+import { EditProduct } from './page/EditProduct';
+import { OrderPage } from './page/OrderPage';
+import { OrderConfirmationPage } from './page/OrderConfirmationPage';
+import { ViewOrder } from './page/ViewOrder';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,11 +34,15 @@ const router = createBrowserRouter(
       <Route path="about" element={<About/>}/>
       <Route path="contact" element={<Contact/>}/>
       <Route path="cart" element={<Cart/>}/>
-      <Route path="checkout" element={<Checkout/>}/>
-      <Route path="success" element={<Success/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="newproduct" element={<Newproduct/>}/>
       <Route path="signup" element={<Signup/>}/>
+      <Route path="products" element={<Products/>}/>
+      <Route path="editproduct/:filterby" element={<EditProduct/>}/>
+      <Route path="orders" element={<Orders/>}/>
+      <Route path="order" element={<OrderPage />} />
+      <Route path ="orderconfirmation" element={<OrderConfirmationPage/>}/>
+      <Route path ="vieworder/:filterby" element = {<ViewOrder/>}/>
     </Route>
   )
 )
