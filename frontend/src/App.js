@@ -8,6 +8,7 @@ import { setDataProduct } from './redux/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDatareservation } from './redux/reservationSlice';
 import { setDataUser } from './redux/userSlice';
+import { setDataOrder } from './redux/orderSlice';
 
 
 
@@ -15,7 +16,8 @@ function App() {
   const dispatch = useDispatch()
   const productData = useSelector((state)=> state.product)
   const reservationData = useSelector((state)=> state.reservation)
-  const usersData = useSelector((state)=> state.user)
+  const userData = useSelector((state)=> state.user)
+  const orderData = useSelector((state)=> state.order)
 
   useEffect(()=>{
     (async()=>{
@@ -50,14 +52,16 @@ function App() {
 
   // console.log(usersData)
   
-  // useEffect(()=>{
-  //   (async()=>{
-  //     const res = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/editproduct`)
-  //     const resData = await res.json()
-  //     console.log(resData)
-  //     dispatch(setDataProduct(resData))
-  //   })()
-  // },[])
+  useEffect(()=>{
+    (async()=>{
+      const res = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/order`)
+      const resData = await res.json()
+      //console.log(resData)
+      dispatch(setDataOrder(resData))
+    })()
+  },[])
+
+  console.log(orderData);
 
   return (
     <>
