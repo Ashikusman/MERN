@@ -61,7 +61,7 @@ function App() {
     })()
   },[])
 
-  console.log(orderData);
+  // console.log(orderData);
 
   return (
     <>
