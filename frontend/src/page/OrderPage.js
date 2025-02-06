@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../redux/productSlice";
 // console.log("AAA");
 
-
 export const OrderPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,12 +13,16 @@ export const OrderPage = () => {
   // Optionally, you can fetch order data from the store or pass it via navigation state
   const productCartItem = useSelector((state) => state.product.cartItem);
   const user = useSelector((state) => state.user);
-  
-  const reservationData = useSelector((state) => state.reservation.reservationList);
-  console.log(reservationData); 
 
-  const lastReservation = reservationData.slice(-1).pop();
-  console.log(lastReservation);
+  const reservationData = useSelector((state) => state.reservation.reservationList);
+  console.log(reservationData);
+
+  // const lastReservation = reservationData.slice(-1).pop();
+  // console.log(lastReservation);
+
+  // console.log("Full reservation data:", reservationData);
+  // console.log("Sliced data:", reservationData.slice(-1));
+  // console.log("Last reservation:", lastReservation);
 
   // If order data is passed via location state
   useEffect(() => {
@@ -33,16 +36,14 @@ export const OrderPage = () => {
     if (!orderData && productCartItem.length > 0) {
       setOrderData({
         items: productCartItem,
-        total: productCartItem.reduce(
-          (acc, curr) => acc + parseInt(curr.total),
-          0
-        ) + 500, // Adding table reservation charge
-        reservations: lastReservation,
-
+        total:
+          productCartItem.reduce((acc, curr) => acc + parseInt(curr.total), 0) +
+          500, // Adding table reservation charge
+        reservations: reservationData,
       });
     }
-  }, [productCartItem,lastReservation, orderData]);
-  
+  }, [productCartItem, reservationData, orderData]);
+
   const subTotal = productCartItem.reduce(
     (acc, curr) => acc + parseInt(curr.total),
     0
@@ -53,26 +54,29 @@ export const OrderPage = () => {
   // Handle order placement (send order data to backend)
   const handlePlaceOrder = async () => {
     // console.log("AAA");
-    
+
     if (orderData && user.email) {
       try {
         // Send order data to backend API to save it
-        const response = await fetch(`${process.env.REACT_APP_SERVER_DOMAIN}/order`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            user: user.userId,
-            products: productCartItem.map(item => ({
-              productId: item._id,
-              quantity: item.qty,
-              price: item.price,
-            })),
-            totalAmount: subTotal + 500,
-            reservations: lastReservation,// Ensure this includes the necessary reservation details
-          }),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_DOMAIN}/order`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              user: user.userId,
+              products: productCartItem.map((item) => ({
+                productId: item._id,
+                quantity: item.qty,
+                price: item.price,
+              })),
+              totalAmount: subTotal + 500,
+              reservations: reservationData, // Ensure this includes the necessary reservation details
+            }),
+          }
+        );
 
         const data = await response.json();
         console.log(data);
@@ -80,11 +84,9 @@ export const OrderPage = () => {
           dispatch(clearCart());
           alert("Order placed successfully!");
           //Navigate("/orderconfirmation");
-          navigate('/orderconfirmation',{ state: { orderData: orderData } });
+          navigate("/orderconfirmation", { state: { orderData: orderData } });
           //window.location.href = '/orderconfirmation';
-                   
-        }
-        else {
+        } else {
           alert("There was an error placing the order.");
         }
       } catch (error) {
@@ -106,15 +108,18 @@ export const OrderPage = () => {
             <h3 className="text-xl font-semibold">Your Order</h3>
             <ul>
               {orderData.items.map((item) => (
-                <li key={item._id} className="flex justify-between py-2 border-b">
+                <li
+                  key={item._id}
+                  className="flex justify-between py-2 border-b"
+                >
                   <span>{item.name}</span>
                   <span>Rs: {item.total}</span>
                 </li>
               ))}
             </ul>
             <h3 className="text-xl font-semibold">Reservation Details</h3>
-            {/* <ul>
-              {orderData.reservations.map((reservation) => (
+            <ul>
+              {orderData.reservations.map((reservation,index) => (
                 <li key={index} className="flex-col">
                   <div className="flex justify-between">
                     No. of Persons <span>{reservation.noOfPerson}</span>
@@ -140,17 +145,16 @@ export const OrderPage = () => {
                   </div>
                 </li>
               ))}
-            </ul> */}
+            </ul>
 
             {/*To fix error "TypeError: orderData.reservations.map is not a function"*/}
-            <div className="flex-col">
+
+            {/* <div className="flex-col">
               <div className="flex justify-between">
                 No. of Persons <span>{orderData.reservations.noOfPerson}</span>
               </div>
               <div className="w-full flex justify-between">
-                <div>
-                  Date
-                </div>
+                <div>Date</div>
                 <div>
                   <span>{orderData.reservations.date}th </span>
                   <span>{orderData.reservations.month}</span>
@@ -166,10 +170,14 @@ export const OrderPage = () => {
               <div className="flex justify-between">
                 Selected Table <span>{orderData.reservations.selectTable}</span>
               </div>
-            </div>
+            </div> */}
             <div className="mt-4">
-              <p className="font-semibold">Total Amount: Rs: {orderData.total}</p>
-              <p className="text-sm mt-2">Table reservation charge included: Rs 500</p>
+              <p className="font-semibold">
+                Total Amount: Rs: {orderData.total}
+              </p>
+              <p className="text-sm mt-2">
+                Table reservation charge included: Rs 500
+              </p>
             </div>
           </div>
 
@@ -199,9 +207,9 @@ export const OrderPage = () => {
       </div>
       <div className="mt-4">
         <Link to={"/menu"}>
-        <button className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
-          Cancel Order
-        </button>
+          <button className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded">
+            Cancel Order
+          </button>
         </Link>
       </div>
     </div>
