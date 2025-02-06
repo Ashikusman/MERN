@@ -25,7 +25,7 @@ export const OrderConfirmationPage = () => {
               ))}
             </ul>
             <h3 className="text-xl font-semibold">Reservation Details</h3>
-            {/* <ul>
+            <ul>
               {orderData.reservations.map((reservation) => (
                 <li key={reservation.reservationId} className="flex-col">
                   <div className="flex justify-between">
@@ -52,8 +52,8 @@ export const OrderConfirmationPage = () => {
                   </div>
                 </li>
               ))}
-            </ul> */}
-            <div className="flex-col">
+            </ul>
+            {/* <div className="flex-col">
               <div className="flex justify-between">
                 No. of Persons <span>{orderData.reservations.noOfPerson}</span>
               </div>
@@ -76,7 +76,7 @@ export const OrderConfirmationPage = () => {
               <div className="flex justify-between">
                 Selected Table <span>{orderData.reservations.selectTable}</span>
               </div>
-            </div>
+            </div> */}
             <div className="mt-4">
               <p className="font-semibold">
                 Total Amount: Rs: {orderData.total}
