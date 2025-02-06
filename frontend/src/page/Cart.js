@@ -19,8 +19,8 @@ export const Cart = () => {
   const reservationData = useSelector((state) => state.reservation.reservationList);
   //console.log(reservationData);
 
-  const lastReservation = reservationData.slice(-1).pop();
-  console.log(lastReservation);
+  // const lastReservation = reservationData.slice(-1).pop();
+  // console.log(lastReservation);
 
   // const location = useLocation();
   // const reservationData =  location.state?.reservationData
@@ -46,7 +46,7 @@ export const Cart = () => {
       // console.log(reservations);
       navigate("/order", {
         state: {
-          orderData: { items: productCartItem, total: subTotal + 500, reservations: lastReservation},
+          orderData: { items: productCartItem, total: subTotal + 500, reservations: reservationData},
         },
       });
       /*const orderData = {
