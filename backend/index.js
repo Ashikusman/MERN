@@ -225,10 +225,10 @@ app.post("/reservation", async (req, res) => {
 
 });
 
-//Api to fetch last reservation 5.16.20
+//Api to fetch last reservation 
 app.get("/reservation", async (req, res) => {
   //const data = await reservationModel.find({}); 
-  const data = await reservationModel.find({})//.sort({reservationId:-1}).limit(1);
+  const data = await reservationModel.find({}).sort({reservationId:-1}).limit(1);
   //const data = await reservationModel.findOne({}).sort({_id:-1}); Uncaught (in promise) TypeError: action.payload is not iterable
   //const data = await reservationModel.findByAndUpdate(req.body._id).sort({_id:-1}).limit(1); //TypeError: reservationModel.findByAndUpdate is not a function
   //res.send(data)
@@ -321,5 +321,13 @@ app.post("/order", async (req, res) => {
   }
 });
 
+//API to fetch all orders
+app.get("/order", async(req,res) => {
+  const data = await orderModel.find({});
+  //res.send(data)
+  res.send(JSON.stringify(data));
+  //create useEffect in App.js
+
+})
 
 
