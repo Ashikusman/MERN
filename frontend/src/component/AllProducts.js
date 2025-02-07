@@ -34,8 +34,8 @@ export const AllProducts = ({ heading }) => {
               //if data is present,display products
               return (
                 <MenuCard
-                  key={el._id}
-                  id={el._id}
+                  key={el.productId}
+                  id={el.productId}
                   image={el.image}
                   name={el.name}
                   price={el.price}
