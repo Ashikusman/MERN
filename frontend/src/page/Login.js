@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SignupImage from "../Assets/user.png";
 import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,15 +17,6 @@ const Login = () => {
   //Import useNavigate above
   const navigate = useNavigate()
   // console.log(data)
-  const location = useLocation();
-  const [reservationData,setReservationData] = useState(null);
-
-  useEffect(() => {
-    if(location.state && location.state.reservationData) {
-      setReservationData(location.state.reservationData)
-
-    }
-  }, [location])
 
   //useSelector comes from the react-redux
   const userData = useSelector((state) => state.user)
