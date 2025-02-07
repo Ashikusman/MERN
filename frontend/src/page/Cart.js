@@ -12,7 +12,7 @@ export const Cart = () => {
 
   const user = useSelector((state) => state.user);
   //console.log(user)
-  console.log("User state:", user);
+  //console.log("User state:", user);
 
   const navigate = useNavigate();
 
@@ -111,8 +111,8 @@ export const Cart = () => {
               {productCartItem.map((el) => {
                 return (
                   <CartProduct
-                    key={el._id}
-                    id={el._id}
+                    key={el.productId}
+                    id={el.productId}
                     name={el.name}
                     image={el.image}
                     price={el.price}
