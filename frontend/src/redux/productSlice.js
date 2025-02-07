@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
 const initialState = {
-  productList: [],
+  //productList: [],
+  productList: JSON.parse(localStorage.getItem('productLists')) || [], // Load from localStorage if available
   //cartItem: [],
   cartItem: JSON.parse(localStorage.getItem('cartItems')) || [], // Load from localStorage if available
 };
@@ -15,11 +16,12 @@ export const productSlice = createSlice({
     setDataProduct: (state, action) => {
       // console.log(action); // to check whether data is coming or not
       state.productList = [...action.payload];
+      localStorage.setItem('productLists', JSON.stringify(state.productList)); // Persist to localStorage
       localStorage.setItem('cartItems', JSON.stringify(state.cartItem)); // Persist to localStorage
     },
     
     addCartItem: (state, action) => {
-      const check = state.cartItem.some((el) => el._id === action.payload._id);
+      const check = state.cartItem.some((el) => el.productId === action.payload.productId);
       console.log(check);
       if (check) {
         toast("Product already added to cart");
@@ -35,13 +37,13 @@ export const productSlice = createSlice({
     },
     deleteCartItem: (state, action) => {
       console.log(action.payload);
-      const index = state.cartItem.findIndex((el) => el._id === action.payload);
+      const index = state.cartItem.findIndex((el) => el.productId === action.payload);
       state.cartItem.splice(index, 1); //splice mehtod is used to display the other element when one elemnt is deleted
       console.log(index);
       localStorage.setItem('cartItems', JSON.stringify(state.cartItem)); // Persist to localStorage
     },
     increaseQty: (state, action) => {
-      const index = state.cartItem.findIndex((el) => el._id === action.payload);
+      const index = state.cartItem.findIndex((el) => el.productId === action.payload);
       let qty = state.cartItem[index].qty;
       const qtyIncrease = ++qty;
       state.cartItem[index].qty = qtyIncrease;
@@ -54,7 +56,7 @@ export const productSlice = createSlice({
       localStorage.setItem('cartItems', JSON.stringify(state.cartItem)); // Persist to localStorage
     },
     decreaseQty: (state, action) => {
-      const index = state.cartItem.findIndex((el) => el._id === action.payload);
+      const index = state.cartItem.findIndex((el) => el.productId === action.payload);
       let qty = state.cartItem[index].qty;
       if (qty > 1) {
         const qtydecrease = --qty
@@ -69,6 +71,14 @@ export const productSlice = createSlice({
     },
     clearCart: (state) => {
       state.cartItem = [];
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItem)); // Persist to localStorage
+    },
+    deleteProduct: (state, action) => {
+      state.productList = state.productList.filter(product => product.productId !== action.payload);
+      toast("Product deleted successfully");
+      localStorage.setItem('productLists', JSON.stringify(state.productList)); // Persist to localStorage
+
+
     },
   },
 });
@@ -80,6 +90,7 @@ export const {
   increaseQty,
   decreaseQty,
   clearCart,
+  deleteProduct,
 
 } = productSlice.actions;
 
