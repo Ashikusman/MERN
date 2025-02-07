@@ -43,6 +43,7 @@ export const userSlice = createSlice({
             state.lastName = "";
             state.email = "";
             state.image = "";
+            localStorage.setItem('userLists', JSON.stringify(state.userList)); // Persist to localStorage
         }
     }
 })
