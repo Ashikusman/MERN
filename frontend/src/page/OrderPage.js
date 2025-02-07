@@ -68,7 +68,7 @@ export const OrderPage = () => {
             body: JSON.stringify({
               user: user.userId,
               products: productCartItem.map((item) => ({
-                productId: item._id,
+                productId: item.productId,
                 quantity: item.qty,
                 price: item.price,
               })),
@@ -109,7 +109,7 @@ export const OrderPage = () => {
             <ul>
               {orderData.items.map((item) => (
                 <li
-                  key={item._id}
+                  key={item.productId}
                   className="flex justify-between py-2 border-b"
                 >
                   <span>{item.name}</span>
