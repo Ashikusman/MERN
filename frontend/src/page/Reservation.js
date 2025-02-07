@@ -73,6 +73,7 @@ export const Reservation = () => {
     }
     else {
       //alert("Please fill in the required fields")
+      
 
     }
   };
@@ -232,12 +233,14 @@ export const Reservation = () => {
             <option>10.00 pm</option>
           </select>
           <br />
-          <button
+          {data.endTime && (
+            <button
             className=" flex flex-col mb-2 w-full max-w-[150px] m-auto bg-blue-500 hover:bg-blue-600 cursor-pointer text-white text-xl font-medium text-center py-1 rounded-full mt-3 items-center justify-center "
             onClick={handleShowTable}
           >
             Find table
           </button>
+          )}         
           <br />
 
           {showTable ? (
