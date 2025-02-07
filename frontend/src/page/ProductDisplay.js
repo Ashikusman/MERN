@@ -14,7 +14,7 @@ const ProductDisplay = () => {
   const productData = useSelector((state) => state.product.productList);
   //console.log(productData);
 
-  const productDisplay = productData.filter((el) => el._id === filterby)[0];
+  const productDisplay = productData.filter((el) => el.productId === filterby)[0];
   // console.log(productDisplay);
 
   const dispatch = useDispatch()
